@@ -17,6 +17,8 @@ const root = buildUserInterface();
 const tetris = root.find("tetris");
 const playButton = root.find("playButton");
 
+let playing = false;
+
 let animationId;
 let score;
 let times;
@@ -24,9 +26,18 @@ let delays;
 let move;
 let nextPiece;
 
+let leftdownListener, leftupListener;
+let rightdownListener, rightupListener;
+let downdownListener, downupListener;
+let updownListener;
+
 const play = function () {
   initGlobalVariables();
-  removeContentTetris();
+
+  if (playing) {
+    removeContentTetris();
+    removeListeners();
+  }
 
   cancelAnimationFrame(animationId);
   const animate = () => {
@@ -35,7 +46,9 @@ const play = function () {
   };
   animate();
 
-  eventListeners();
+  addListeners();
+
+  playing = true;
 };
 
 const initGlobalVariables = function () {
@@ -52,6 +65,16 @@ const initGlobalVariables = function () {
 const removeContentTetris = function () {
   tetris.call("removePiece");
   tetris.call("removeBlocks");
+};
+
+const removeListeners = function () {
+  tetris.listeners.remove("leftdown", leftdownListener);
+  tetris.listeners.remove("leftup", leftupListener);
+  tetris.listeners.remove("rightdown", rightdownListener);
+  tetris.listeners.remove("rightup", rightupListener);
+  tetris.listeners.remove("downdown", downdownListener);
+  tetris.listeners.remove("downup", downupListener);
+  tetris.listeners.remove("updown", updownListener);
 };
 
 const getNextPiece = function () {
@@ -247,27 +270,37 @@ const computePoints = function (removed) {
   return 1200;
 };
 
-const eventListeners = function () {
-  tetris.listeners.add("leftdown", () => {
+const addListeners = function () {
+  leftdownListener = () => {
     delays.horizontal = 0;
     move.left = true;
-  });
-  tetris.listeners.add("leftup", () => (move.left = false));
+  };
+  tetris.listeners.add("leftdown", leftdownListener);
 
-  tetris.listeners.add("rightdown", () => {
+  leftupListener = () => (move.left = false);
+  tetris.listeners.add("leftup", leftupListener);
+
+  rightdownListener = () => {
     delays.horizontal = 0;
     move.right = true;
-  });
-  tetris.listeners.add("rightup", () => (move.right = false));
+  };
+  tetris.listeners.add("rightdown", rightdownListener);
 
-  tetris.listeners.add("updown", () => (move.rotate = true));
+  rightupListener = () => (move.right = false);
+  tetris.listeners.add("rightup", rightupListener);
 
-  tetris.listeners.add("downdown", () => {
+  updownListener = () => (move.rotate = true);
+  tetris.listeners.add("updown", updownListener);
+
+  downdownListener = () => {
     delays.down = config.delays.down.fast;
-  });
-  tetris.listeners.add("downup", () => {
+  };
+  tetris.listeners.add("downdown", downdownListener);
+
+  downupListener = () => {
     delays.down = config.delays.down.normal;
-  });
+  };
+  tetris.listeners.add("downup", downupListener);
 };
 
 play();
