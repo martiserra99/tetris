@@ -2,7 +2,7 @@ import { canvasUI } from "../../../../canvas-ui/canvas-ui.js";
 
 export const setupStartLifecycleFunctions = function (tetris) {
   tetris.lifecycle.set("updateElement", function (tetris, grid) {
-    for (const child of [...grid.children]) grid.remove(child);
+    grid.removeAll();
 
     const size = tetris.inner.call("getSize");
     grid.set("size", {
