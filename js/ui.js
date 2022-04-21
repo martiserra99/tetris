@@ -94,8 +94,6 @@ export const buildUserInterface = function () {
 
   game.insert(pieceContainer);
 
-  adaptUserInterfaceWithSize();
-
   return root;
 };
 
@@ -129,27 +127,4 @@ const insertNextPiece = function (piece) {
 
 export const showScore = function (score) {
   scoreText.set("text", "Score: " + score);
-};
-
-const adaptUserInterfaceWithSize = function () {
-  const adaptUI = function () {
-    const width = window.innerWidth;
-    if (width < 800) {
-      game.remove(aside);
-    } else {
-      if (game.find("aside") === null) {
-        game.insert(aside);
-        aside.layoutParams.set("position", -1);
-      }
-    }
-    if (width < 500) {
-      game.remove(pieceContainer);
-    } else {
-      if (game.find("pieceContainer") === null) {
-        game.insert(pieceContainer);
-      }
-    }
-  };
-  setTimeout(() => adaptUI(), 0);
-  window.addEventListener("resize", () => adaptUI());
 };
