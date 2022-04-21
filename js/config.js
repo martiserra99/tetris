@@ -9,8 +9,8 @@ export const config = {
   },
   styles: {
     area: {
-      background: "#edede9",
-      border: { size: 3, color: "#d6ccc2" },
+      background: "#f6f6f4",
+      border: { size: 1, color: "#cacbc5" },
       corner: { type: "round", size: 5 },
     },
     block: {
@@ -20,21 +20,21 @@ export const config = {
       gap: 0,
     },
     button: {
-      color: "#fff",
-      background: "#968f88",
-      border: { size: 0, color: "rgba(0,0,0,0)" },
+      color: "#70716e",
+      background: "#f6f6f4",
+      border: { size: 1, color: "#cacbc5" },
       corner: { type: "round", size: 5 },
       font: {
         family: "Raleway, sans-serif",
         size: 16,
         weight: 600,
       },
-      mousedown: { background: "#87817a" },
+      mousedown: { background: "#dddddc" },
     },
     text: {
-      color: "#968f88",
+      color: "#70716e",
       background: "rgba(0,0,0,0)",
-      border: { size: 1, color: "#968f88" },
+      border: { size: 1, color: "#cacbc5" },
       corner: { type: "round", size: 5 },
       font: {
         family: "Raleway, sans-serif",
