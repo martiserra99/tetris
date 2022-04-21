@@ -38,12 +38,10 @@ export const buildUserInterface = function () {
     height: { unit: "px", value: 50 },
   });
   scoreText.set("text", "Score: 0");
-  scoreText.set("border", { size: 1, color: "#968f88" });
-  scoreText.set("color", "#968f88");
-  scoreText.get("font").family = "Raleway, sans-serif";
-  scoreText.get("font").size = 16;
-  scoreText.get("font").weight = 400;
-  scoreText.set("corner", { type: "round", size: 5 });
+  scoreText.set("border", config.styles.text.border);
+  scoreText.set("color", config.styles.text.color);
+  scoreText.set("font", config.styles.text.font);
+  scoreText.set("corner", config.styles.text.corner);
 
   aside.insert(scoreText);
 
@@ -53,18 +51,17 @@ export const buildUserInterface = function () {
     height: { unit: "px", value: 50 },
   });
   playButton.set("text", "Play");
-  playButton.set("background", "#968f88");
-  playButton.set("color", "#fff");
-  playButton.get("font").family = "Raleway, sans-serif";
-  playButton.get("font").size = 16;
-  playButton.get("font").weight = 600;
-  playButton.set("corner", { type: "round", size: 5 });
+  playButton.set("background", config.styles.button.background);
+  playButton.set("color", config.styles.button.color);
+  playButton.set("font", config.styles.button.font);
+  playButton.set("border", config.styles.button.border);
+  playButton.set("corner", config.styles.button.corner);
 
-  playButton.listeners.add("mouseenter", function (playButton) {
-    playButton.set("background", "#87817a");
+  playButton.listeners.add("mousedown", function () {
+    playButton.set("background", config.styles.button.mousedown.background);
   });
-  playButton.listeners.add("mouseleave", function (playButton) {
-    playButton.set("background", "#968f88");
+  root.listeners.add("mouseup", function (playutton) {
+    playButton.set("background", config.styles.button.background);
   });
 
   aside.insert(playButton);
@@ -72,14 +69,14 @@ export const buildUserInterface = function () {
   tetris = canvasUI.composite.new("tetris", "tetris");
   tetris.set("dimensions", config.dimensions);
   tetris.set("block", {
-    size: config.block.size,
-    border: config.block.border,
-    corner: config.block.corner,
+    size: config.styles.block.size,
+    border: config.styles.block.border,
+    corner: config.styles.block.corner,
   });
-  tetris.set("gap", { size: config.gap, color: "rgba(0,0,0,0)" });
-  tetris.set("background", config.background);
-  tetris.set("border", config.border);
-  tetris.set("corner", { type: "round", size: config.corner });
+  tetris.set("gap", { size: config.styles.block.gap, color: "rgba(0,0,0,0)" });
+  tetris.set("background", config.styles.area.background);
+  tetris.set("border", config.styles.area.border);
+  tetris.set("corner", config.styles.area.corner);
 
   game.insert(tetris);
 
@@ -88,9 +85,9 @@ export const buildUserInterface = function () {
     width: { unit: "px", value: 150 },
     height: { unit: "px", value: 150 },
   });
-  pieceContainer.set("background", config.background);
-  pieceContainer.set("border", config.border);
-  pieceContainer.set("corner", { type: "round", size: config.corner });
+  pieceContainer.set("background", config.styles.area.background);
+  pieceContainer.set("border", config.styles.area.border);
+  pieceContainer.set("corner", config.styles.area.corner);
 
   game.insert(pieceContainer);
 
@@ -111,12 +108,12 @@ const buildNextPiece = function (piece) {
   const pieceElement = canvasUI.composite.new("piece", "piece");
   pieceElement.set("positions", piece.positions);
   pieceElement.set("block", {
-    size: config.block.size,
+    size: config.styles.block.size,
     background: piece.background,
-    border: { size: config.block.border, color: piece.border },
-    corner: { type: "round", size: config.block.corner },
+    border: { size: config.styles.block.border, color: piece.border },
+    corner: { type: "round", size: config.styles.block.corner },
   });
-  pieceElement.set("gap", config.gap);
+  pieceElement.set("gap", config.styles.block.gap);
   return pieceElement;
 };
 
