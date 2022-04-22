@@ -177,6 +177,7 @@ const insertPiece = function (piece) {
     const position = { x: value, y: 0 };
     if (validPiece({ position, piece })) {
       tetris.call("insertPiece", { position, piece });
+      times.down = getTimestamp();
       return true;
     }
     xPositions.splice(index, 1);
