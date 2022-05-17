@@ -1,4 +1,4 @@
-import { canvasUI } from "./canvas-ui/canvas-ui.js";
+import canvasUI from "./canvasui-js.js";
 import { config } from "./config.js";
 
 let root;

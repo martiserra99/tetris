@@ -1,4 +1,4 @@
-import { canvasUI } from "../../../../canvas-ui/canvas-ui.js";
+import canvasUI from "../../../../canvasui-js.js";
 
 export const setupStartLifecycleFunctions = function (piece) {
   piece.lifecycle.set("updateElement", function (piece, grid) {
