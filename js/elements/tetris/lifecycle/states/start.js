@@ -1,4 +1,4 @@
-import canvasUI from "../../../../canvasui-js.js";
+import canvasUI from "../../../../canvas-user-interface.js";
 
 export const setupStartLifecycleFunctions = function (tetris) {
   tetris.lifecycle.set("updateElement", function (tetris, grid) {

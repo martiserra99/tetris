@@ -1,4 +1,4 @@
-import canvasUI from "../../../../canvasui-js.js";
+import canvasUI from "../../../../canvas-user-interface.js";
 
 export const setupCreateLifecycleFunctions = function (tetris) {
   tetris.lifecycle.set("getElement", function (tetris) {
