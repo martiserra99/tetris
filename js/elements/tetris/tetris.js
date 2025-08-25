@@ -1,4 +1,4 @@
-import canvasUI from "../../canvas-user-interface.js";
+import canvasUI from "../../canvas-user-interface/index.esm.js";
 import { setupEvents } from "./events/events.js";
 import { setupFunctions } from "./functions/functions.js";
 import { setupLifecycleFunctions } from "./lifecycle/lifecycle.js";
